@@ -30,8 +30,6 @@ class RyzenControl:
         for s in (signal.SIGHUP, signal.SIGTERM, signal.SIGINT, signal.SIGQUIT):
             self.loop.add_signal_handler(s, lambda s=s: create_task(self.stop_loop(self.loop)))
 
-        self.start_server()
-
     # Verify RyzenAdj is installed.
     def check_ryzen_installed(self):
         if not os.path.exists("/usr/bin/ryzenadj"):
@@ -132,3 +130,4 @@ class RyzenControl:
 
 def main():
     ryzen_control = RyzenControl()
+    ryzen_control.start_server()
